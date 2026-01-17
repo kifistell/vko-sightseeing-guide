@@ -1,0 +1,1019 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Гид по Восточному Казахстану</title>
+
+    <!-- ОСНОВНОЙ CSS -->
+    <link rel="stylesheet" href="quide_1.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css">
+
+
+    <!-- ИЗОЛИРОВАННЫЕ СТИЛИ КАРТЫ -->
+    <style>
+
+
+
+
+        .panel h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2f7f6f;
+        }
+
+        .panel select,
+        .panel button {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            border: 1px solid #c8e6df;
+            font-size: 15px;
+        }
+
+        .panel button {
+            background: #2f7f6f;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .panel .swap {
+            background: #5fa89b;
+        }
+
+        .route-info {
+            display: none;
+            margin-top: 10px;
+            background: #f1f8e9;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            color: #1b5e20;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <div class="wrapper">
+        <svg class="wave" viewBox="0 0 1440 150" preserveAspectRatio="none">
+            <path d="M0,30 C360,120 1080,0 1440,60 L1440,150 L0,150 Z" fill="#ffffff"></path>
+        </svg>
+
+        <header class="container">
+            <div class="header-top">
+                <img src="lotus.png" class="LOGO">
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#map12345">Маршруты</a></li>
+                        <li><a href="#wx">Погода</a></li>
+                        <li><a href="#info">Что посмотреть</a></li>
+                        <li class="theme-toggle">
+                            <button id="themeToggle">Тема</button>
+                        </li>
+                        <li class="btn"><a href="tel:+77711623673">Связаться с гидом</a></li>
+                        <li class="lang" id="langSwitch">
+                            <button class="lang-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Выбор языка">
+                                RU
+                                <span class="lang-caret" aria-hidden="true">▾</span>
+                            </button>
+
+                            <div class="lang-menu" role="menu" aria-label="Языки">
+                                <a class="lang-item is-active" role="menuitem" href="HTMLPage2.html" lang="ru" hreflang="ru">Русский</a>
+                                <a class="lang-item" role="menuitem" href="HTMLPage2_KZ.html" lang="kk" hreflang="kk">Қазақша</a>
+                                <a class="lang-item" role="menuitem" href="HTMLPage2_EN.html" lang="en" hreflang="en">English</a>
+                            </div>
+                        </li>
+
+                    </ul>
+                </nav>
+
+            </div>
+            <h1>ИССЛЕДУЙ ВОСТОЧНЫЙ КАЗАХСТАН</h1>
+
+
+        </header>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <div class="second">
+        <div class="hero container">
+            <img class="map" id="heroMap" src="map.png" alt="Карта ВКО">
+
+            <div class="hero-info">
+                <h3>Ваш гид по ВКО</h3>
+                <p id="green">Путешествуй по ВКО</p>
+
+                <p>
+                    Каждое путешествие - это история.
+                    Мы поможем вам увидеть Восточный Казахстан таким, каким его знают только местные.
+                </p>
+
+                <p>
+                    Планируйте поездки по ВКО с понятными ориентирами: что посмотреть, как добраться, когда лучше ехать и сколько времени заложить.
+                    Всё собрано в одном месте - быстро, удобно и по делу.
+                </p>
+            </div>
+
+            <img class="air" src="air.png" alt="">
+        </div>
+
+        <!-- ВАЖНО: сброс float/обтекания, чтобы карусель начиналась корректно -->
+        <div style="clear: both;"></div>
+
+        <section class="carusel">
+            <div class="main_cro container">
+                <div class="events-slider no-arrows">
+                    <div class="events-window">
+                        <div class="events-track">
+
+                            <div class="card"><img src="katon-plato.jpg" alt="Фото 2"></div>
+                            <div class="card"><img src="katon.jpeg" alt="Фото 2"></div>
+                            <div class="card"><img src="katon-rika.jpg" alt="Фото 2"></div>
+                            <div class="card"><img src="liys.png" alt="Фото 2"></div>
+                            <div class="card"><img src="goluboyozero.jpeg" alt="Фото 2"></div>
+                            <div class="card"><img src="tursugyn.jpg" alt="Фото 2"></div>
+                            <div class="card"><img src="katon-plato.jpg" alt="Фото 2"></div>
+                            <div class="card"><img src="osyl.jpeg" alt="Фото 2"></div>
+                            <div class="card"><img src="beluha.png" alt="Фото 2"></div>
+                            <div class="card"><img src="priirtysh.jpg" alt="Фото 3"></div>
+                            <div class="card"><img src="vodopad.jpeg" alt="Фото 2"></div>
+                            <div class="card"><img src="ozera.jpeg" alt="Фото 2"></div>
+
+                            <div class="card"><img src="sibiny_1.jpeg" alt="Фото 2"></div>
+                            <div class="card"><img src="sibiny_2.jpeg" alt="Фото 2"></div>
+                            <div class="card"><img src="turgen.jpg" alt="Фото 2"></div>
+                            <div class="card"><img src="zakat.jpg" alt="Фото 2"></div>
+                            <div class="card"><img src="krasivo.jpeg" alt="Фото 2"></div>
+                            <div class="card"><img src="sibiny_1.jpeg" alt="Фото 2"></div>
+                            <div class="card"><img src="gorakrasivo.jpeg" alt="Фото 3"></div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nothero-info">
+                    <h2>Там, где начинается твой путь</h2>
+                    <p>Выберите направление — и начните путешествие по ВКО.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <section class="wx-screen" id="wx">
+        <div class="container wx-wrap">
+            <div class="wx-top">
+                <div>
+                    <div class="wx-kicker">Погода</div>
+                    <h2 class="wx-title">ВКО</h2>
+                </div>
+
+                <div class="wx-controls">
+                    <button class="wx-collapse" id="wxCollapse" aria-expanded="true" title="Свернуть/развернуть">
+                        <span class="wx-chev" aria-hidden="true"></span>
+                    </button>
+
+                    <div class="wx-select-wrap">
+                        <select class="wx-select" id="wxRegion"></select>
+                    </div>
+
+                    <button class="wx-btn" id="wxReload" type="button">Обновить</button>
+                </div>
+            </div>
+
+            <div class="wx-meta" id="wxMeta">Загрузка…</div>
+
+            <div class="wx-panel" id="wxPanel">
+                <div class="wx-grid">
+                    <!-- 1: UV -->
+                    <div class="wx-card" data-card="uv">
+                        <div class="wx-card-head">
+                            <div class="wx-label">УФ</div>
+                            <div class="wx-big" id="uvText">—</div>
+                        </div>
+
+                        <div class="wx-gauge">
+                            <svg viewBox="0 0 120 80" class="wx-gsvg">
+                                <path class="wx-track" d="M10 70 A50 50 0 0 1 110 70" />
+                                <path class="wx-prog" d="M10 70 A50 50 0 0 1 110 70" />
+                                <circle class="wx-dot" cx="10" cy="70" r="5" />
+                            </svg>
+                            <div class="wx-sub" id="uvSub">—</div>
+                        </div>
+                    </div>
+
+                    <!-- 2: Humidity -->
+                    <div class="wx-card" data-card="hum">
+                        <div class="wx-card-head">
+                            <div class="wx-label">Влажность</div>
+                            <div class="wx-big" id="humText">—</div>
+                        </div>
+
+                        <div class="wx-gauge">
+                            <svg viewBox="0 0 120 80" class="wx-gsvg">
+                                <path class="wx-track" d="M10 70 A50 50 0 0 1 110 70" />
+                                <path class="wx-prog" d="M10 70 A50 50 0 0 1 110 70" />
+                                <circle class="wx-dot" cx="10" cy="70" r="5" />
+                            </svg>
+                            <div class="wx-sub">💧</div>
+                        </div>
+                    </div>
+
+                    <!-- 3: Feels like -->
+                    <div class="wx-card" data-card="feel">
+                        <div class="wx-card-head">
+                            <div class="wx-label">Ощущается</div>
+                            <div class="wx-big" id="feelText">—</div>
+                        </div>
+
+                        <div class="wx-gauge">
+                            <svg viewBox="0 0 120 80" class="wx-gsvg">
+                                <path class="wx-track" d="M10 70 A50 50 0 0 1 110 70" />
+                                <path class="wx-prog" d="M10 70 A50 50 0 0 1 110 70" />
+                                <circle class="wx-dot" cx="10" cy="70" r="5" />
+                            </svg>
+                            <div class="wx-sub" id="feelSub">—</div>
+                        </div>
+                    </div>
+
+                    <!-- 4: Wind -->
+                    <div class="wx-card" data-card="wind">
+                        <div class="wx-card-head">
+                            <div class="wx-label">Ветер</div>
+                            <div class="wx-big" id="windText">—</div>
+                        </div>
+
+                        <div class="wx-compass">
+                            <div class="wx-compass-ring">
+                                <div class="wx-n">N</div><div class="wx-e">E</div><div class="wx-s">S</div><div class="wx-w">W</div>
+                                <div class="wx-arrow" id="windArrow"></div>
+                            </div>
+                            <div class="wx-sub" id="windSub">—</div>
+                        </div>
+                    </div>
+
+                    <!-- 5: Sunset -->
+                    <div class="wx-card" data-card="sun">
+                        <div class="wx-card-head">
+                            <div class="wx-label">Закат</div>
+                            <div class="wx-big" id="sunsetText">—</div>
+                        </div>
+
+                        <div class="wx-sunline">
+                            <svg viewBox="0 0 220 90" class="wx-sunsvg">
+                                <path class="wx-suntrack" d="M20 70 C70 20 150 20 200 70" />
+                                <circle class="wx-sundot" cx="200" cy="70" r="7" />
+                                <line class="wx-horizon" x1="20" y1="70" x2="200" y2="70" />
+                            </svg>
+                            <div class="wx-sub" id="sunSub">—</div>
+                        </div>
+                    </div>
+
+                    <!-- 6: Pressure -->
+                    <div class="wx-card" data-card="press">
+                        <div class="wx-card-head">
+                            <div class="wx-label">Давление</div>
+                            <div class="wx-big" id="pressText">—</div>
+                        </div>
+
+                        <div class="wx-gauge">
+                            <svg viewBox="0 0 120 80" class="wx-gsvg">
+                                <path class="wx-track" d="M10 70 A50 50 0 0 1 110 70" />
+                                <path class="wx-prog" d="M10 70 A50 50 0 0 1 110 70" />
+                                <circle class="wx-dot" cx="10" cy="70" r="5" />
+                            </svg>
+                            <div class="wx-sub">mbar</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="wx-forecast">
+                    <div class="wx-forecast-title">Прогноз на 7 дней</div>
+                    <div class="wx-days" id="wxDays"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="app">
+        <!-- ИНФО-ЭКРАН -->
+        <div class="info-panel" id="info">
+            <h2>Добро пожаловать</h2>
+            <p>Я расскажу вам о местах нашего В.К.О.</p>
+        </div>
+
+        <!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
+        <div class="side">
+            <select id="filter" onchange="applyFilter()">
+                <option value="all">Все объекты</option>
+                <option value="mountains">Горы и хребты</option>
+                <option value="lakes">Озёра и водохранилища</option>
+                <option value="rivers">Реки</option>
+                <option value="forests">Леса и тайга</option>
+                <option value="plateaus">Плато</option>
+                <option value="canyons">Каньоны и ущелья</option>
+                <option value="steppes">Степи и луга</option>
+                <option value="glaciers">Ледники</option>
+            </select>
+
+            <div class="buttons" id="buttons"></div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+
+
+
+
+
+
+
+    <!-- ===== СЕКЦИЯ КАРТЫ (ПЕРЕД ФУТЕРОМ) ===== -->
+    <section class="route-section" id="map12345">
+        <div class="route-wrapper">
+
+            <div class="panel">
+                <h2>Сгенерировать маршрут</h2>
+
+                <select id="pointA">
+                    <option value="">Пункт А</option>
+                </select>
+
+                <select id="pointB">
+                    <option value="">Пункт Б</option>
+                </select>
+
+                <button onclick="generateRoute()">Сгенерировать маршрут</button>
+                <button class="swap" onclick="swapPoints()">Поменять местами</button>
+
+                <div class="route-info" id="routeInfo"></div>
+            </div>
+
+            <div id="map"></div>
+
+        </div>
+    </section>
+
+    <section class="guides" id="guides">
+        <div class="container">
+            <div class="guides-head">
+                <h2 class="guides-title">Наши гиды</h2>
+                <p class="guides-subtitle">
+                    Выберите проводника под ваш стиль путешествия: горы, озёра, треккинг или комфортные туры.
+                </p>
+            </div>
+
+            <div class="guides-grid">
+                <article class="guide-card">
+                    <img class="guide-img" src="aidana.png" alt="Гид Айдана">
+                    <div class="guide-overlay">
+                        <h3 class="guide-name">Айдана</h3>
+                        <p class="guide-role">Горные маршруты • Алтай</p>
+                        <p class="guide-meta">Опыт: 5 лет • Рус/Қаз/Eng</p>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <img class="guide-img" src="Erlan.png" alt="Гид Ерлан">
+                    <div class="guide-overlay">
+                        <h3 class="guide-name">Ерлан</h3>
+                        <p class="guide-role">Озёра • Маркаколь</p>
+                        <p class="guide-meta">Опыт: 4 года • Рус/Қаз</p>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <img class="guide-img" src="Dina.png" alt="Гид Дина">
+                    <div class="guide-overlay">
+                        <h3 class="guide-name">Дина</h3>
+                        <p class="guide-role">Семейные туры • Локации</p>
+                        <p class="guide-meta">Опыт: 3 года • Рус/Eng</p>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <img class="guide-img" src="timur.png" alt="Гид Тимур">
+                    <div class="guide-overlay">
+                        <h3 class="guide-name">Тимур</h3>
+                        <p class="guide-role">Треккинг • Плато/перевалы</p>
+                        <p class="guide-meta">Опыт: 6 лет • Рус/Қаз</p>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <img class="guide-img" src="alina.png" alt="Гид Алина">
+                    <div class="guide-overlay">
+                        <h3 class="guide-name">Алина</h3>
+                        <p class="guide-role">Фото-туры • Лучшие виды</p>
+                        <p class="guide-meta">Опыт: 4 года • Рус/Eng</p>
+                    </div>
+                </article>
+
+                <article class="guide-card">
+                    <img class="guide-img" src="nurik.png" alt="Гид Нурсултан">
+                    <div class="guide-overlay">
+                        <h3 class="guide-name">Нурсултан</h3>
+                        <p class="guide-role">Маршруты на авто • Комфорт</p>
+                        <p class="guide-meta">Опыт: 5 лет • Рус/Қаз</p>
+                    </div>
+                </article>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="apply-cta-screen">
+        <a class="apply-btn" href="HTMLPage1.html" target="_blank" rel="noopener">Оставить заявку</a>
+    </section>
+
+
+
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="footer-container container">
+
+            <div class="footer-about">
+                <h4>Гид по ВКО</h4>
+                <p>Путешествия по Восточному Казахстану</p>
+            </div>
+
+            <div class="footer-nav">
+                <h4>Навигация</h4>
+                <ul>
+                    <li><a href="#">Маршруты</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Галерея</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contacts">
+                <h4>Контакты</h4>
+                <p>Email: info@vko-travel.kz</p>
+                <p>Телефон: +7 (777) 000-00-00</p>
+            </div>
+
+        </div>
+        <div class="footer-bottom">© 2026 • Путешествия по ВКО</div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const slider = document.querySelector(".events-slider");
+            if (!slider) return;
+
+            const track = slider.querySelector(".events-track");
+            const windowEl = slider.querySelector(".events-window");
+            const btnLeft = slider.querySelector(".arrow.left");
+            const btnRight = slider.querySelector(".arrow.right");
+
+            let step = 0;
+            let gap = 0;
+            let visible = 3;
+            let auto = null;
+            let isAnimating = false;
+            let dir = "next"; // "next" | "prev"
+
+            function ensureEnoughCards() {
+                const base = Array.from(track.children);
+                if (base.length === 0) return;
+
+                // Нужно минимум visible+2, чтобы карусель не “кончалась”
+                while (track.children.length < visible + 2) {
+                    for (const c of base) {
+                        if (track.children.length >= visible + 2) break;
+                        track.appendChild(c.cloneNode(true));
+                    }
+                }
+            }
+
+            function recalc() {
+                const card = track.querySelector(".card");
+                if (!card) return;
+
+                gap = parseFloat(getComputedStyle(track).gap) || 0;
+
+                // ширина карточки (после загрузки изображений она стабильнее)
+                const cardW = card.getBoundingClientRect().width;
+                step = cardW + gap;
+
+                const winW = windowEl.getBoundingClientRect().width;
+                visible = Math.max(1, Math.floor((winW + gap) / step));
+
+                ensureEnoughCards();
+
+                // Сброс позиции без анимации (важно при resize)
+                track.style.transition = "none";
+                track.style.transform = "translateX(0px)";
+                track.getBoundingClientRect(); // reflow
+                track.style.transition = "transform .45s ease";
+            }
+
+            function stop() {
+                if (auto) clearInterval(auto);
+                auto = null;
+            }
+
+            function start() {
+                stop();
+                auto = setInterval(() => next(), 3000);
+            }
+
+            function next() {
+                if (isAnimating || !step) return;
+                dir = "next";
+                isAnimating = true;
+                track.style.transform = `translateX(-${step}px)`;
+            }
+
+            function prev() {
+                if (isAnimating || !step) return;
+                dir = "prev";
+                isAnimating = true;
+
+                // 1) мгновенно переносим последнюю карточку в начало
+                const last = track.lastElementChild;
+                track.style.transition = "none";
+                track.insertBefore(last, track.firstElementChild);
+
+                // 2) ставим ленту в позицию -step без анимации
+                track.style.transform = `translateX(-${step}px)`;
+                track.getBoundingClientRect(); // reflow
+
+                // 3) анимируем обратно в 0
+                track.style.transition = "transform .45s ease";
+                track.style.transform = "translateX(0px)";
+            }
+
+            track.addEventListener("transitionend", (e) => {
+                if (e.propertyName !== "transform") return;
+
+                // После движения вправо/влево делаем “карусель” через перестановку DOM
+                if (dir === "next") {
+                    track.style.transition = "none";
+                    track.appendChild(track.firstElementChild);
+                    track.style.transform = "translateX(0px)";
+                    track.getBoundingClientRect(); // reflow
+                    track.style.transition = "transform .45s ease";
+                }
+
+                isAnimating = false;
+            });
+
+            btnRight?.addEventListener("click", () => {
+                stop();
+                next();
+                start();
+            });
+
+            btnLeft?.addEventListener("click", () => {
+                stop();
+                prev();
+                start();
+            });
+
+            windowEl?.addEventListener("mouseenter", stop);
+            windowEl?.addEventListener("mouseleave", start);
+
+            // Инициализация после загрузки ресурсов + при ресайзе
+            window.addEventListener("load", () => {
+                recalc();
+                start();
+            });
+            window.addEventListener("resize", recalc);
+        });
+    </script>
+
+
+
+    <script>
+
+        const routePoints = {
+            "Усть-Каменогорск": [49.90, 82.62],
+            "Семей": [50.41, 80.23],
+            "Риддер": [50.33, 83.50],
+            "Катон": [49.17, 85.59],
+            "Зайсан": [47.97, 84.117],
+            "Маркаколь": [48.74, 85.74],
+            "Бухтарминское водохранилище": [49.0113, 83.85],
+            "Ледник Белуха": [49.8070585, 86.5899105],
+            "Ак-Баур": [49.679778, 82.685541],
+            "Сибинские озёра": [49.442989, 82.610224]
+        };
+
+        const selectA = document.getElementById("pointA");
+        const selectB = document.getElementById("pointB");
+        const infoBox = document.getElementById("routeInfo");
+
+        Object.keys(routePoints).forEach(p => {
+            selectA.add(new Option(p, p));
+            selectB.add(new Option(p, p));
+        });
+
+        const map = L.map("map").setView([49.97, 82.63], 7);
+
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 18
+        }).addTo(map);
+
+        const router = L.Routing.control({
+            waypoints: [],
+            addWaypoints: false,
+            draggableWaypoints: false,
+            fitSelectedRoutes: true,
+            show: false,
+            lineOptions: {
+                styles: [{ color: "#2f7f6f", weight: 6, opacity: 0.9 }]
+            }
+        }).addTo(map);
+
+        router.on("routesfound", function (e) {
+            const route = e.routes[0];
+            const km = (route.summary.totalDistance / 1000).toFixed(1);
+            const min = Math.round(route.summary.totalTime / 60);
+
+            infoBox.style.display = "block";
+            infoBox.innerHTML = `
+                                                                        Расстояние: <b>${km} км</b><br>
+                                                                            Время в пути: <b>${min} мин</b>
+                                                                            `;
+        });
+
+        function generateRoute() {
+            const A = selectA.value;
+            const B = selectB.value;
+
+            if (!A || !B) {
+                alert("Выбери оба пункта");
+                return;
+            }
+
+            router.setWaypoints([
+                L.latLng(...routePoints[A]),
+                L.latLng(...routePoints[B])
+            ]);
+
+            // если карта была инициализирована до точных размеров блока
+            setTimeout(() => map.invalidateSize(), 150);
+        }
+
+        function swapPoints() {
+            const temp = selectA.value;
+            selectA.value = selectB.value;
+            selectB.value = temp;
+
+            if (selectA.value && selectB.value) generateRoute();
+        }
+    </script>
+
+    <script>
+        // ===== ТОЛЬКО ВКО =====
+        // Координаты городов/районов (можешь удалить/добавить свои пункты).
+        const VKO_REGIONS = [
+            { key: "oskemen", name: "Өскемен / Усть-Каменогорск", lat: 49.9589, lon: 82.6058 },
+            { key: "ridder", name: "Риддер", lat: 50.3441, lon: 83.5129 },
+            { key: "altai", name: "Алтай (Зыряновск)", lat: 48.8315, lon: 84.6068 },
+            { key: "serebryansk", name: "Серебрянск", lat: 49.6819, lon: 83.2847 },
+            { key: "zaysan", name: "Зайсан", lat: 47.4666, lon: 84.8714 },
+            { key: "kurchum", name: "Курчум", lat: 48.5660, lon: 83.6615 },
+            { key: "katon", name: "Катон-Карагай", lat: 49.1753, lon: 85.6032 },
+            { key: "markakol", name: "Маркаколь", lat: 48.7411, lon: 85.7777 },
+            { key: "shemonaikha", name: "Шемонаиха", lat: 50.6297, lon: 81.9065 },
+            { key: "glubokoe", name: "Глубокое", lat: 50.1450, lon: 82.3110 }
+        ];
+
+        const $region = document.getElementById("wxRegion");
+        const $meta = document.getElementById("wxMeta");
+        const $panel = document.getElementById("wxPanel");
+        const $collapse = document.getElementById("wxCollapse");
+        const $chev = document.querySelector(".wx-chev");
+        const $reload = document.getElementById("wxReload");
+        const $days = document.getElementById("wxDays");
+
+        const $uvText = document.getElementById("uvText");
+        const $uvSub = document.getElementById("uvSub");
+        const $humText = document.getElementById("humText");
+        const $feelText = document.getElementById("feelText");
+        const $feelSub = document.getElementById("feelSub");
+        const $windText = document.getElementById("windText");
+        const $windSub = document.getElementById("windSub");
+        const $windArrow = document.getElementById("windArrow");
+        const $sunset = document.getElementById("sunsetText");
+        const $sunSub = document.getElementById("sunSub");
+        const $press = document.getElementById("pressText");
+
+        // ===== заполнение select =====
+        VKO_REGIONS.forEach(r => {
+            const o = document.createElement("option");
+            o.value = r.key;
+            o.textContent = r.name;
+            $region.appendChild(o);
+        });
+
+        const saved = localStorage.getItem("vko_region");
+        if (saved && VKO_REGIONS.some(x => x.key === saved)) $region.value = saved;
+
+        // ===== collapse =====
+        function setCollapsed(v) {
+            $panel.classList.toggle("is-collapsed", v);
+            $collapse.setAttribute("aria-expanded", String(!v));
+            if ($chev) $chev.style.transform = v ? "rotate(225deg)" : "rotate(45deg)";
+        }
+        $collapse.addEventListener("click", () => setCollapsed(!$panel.classList.contains("is-collapsed")));
+        setCollapsed(false);
+
+        function clamp01(x) { return Math.max(0, Math.min(1, x)); }
+
+        // ===== управление полудугой =====
+        function setGauge(cardKey, p) {
+            const cardEl = document.querySelector(`.wx-card[data-card="${cardKey}"]`);
+            if (!cardEl) return;
+
+            const prog = cardEl.querySelector(".wx-prog");
+            const dot = cardEl.querySelector(".wx-dot");
+            if (!prog || !dot) return;
+
+            const L = 157; // соответствует CSS stroke-dasharray
+            const off = L * (1 - clamp01(p));
+            prog.style.strokeDashoffset = String(off);
+
+            const deg = 180 * clamp01(p);
+            dot.style.transform = `rotate(${deg}deg)`;
+        }
+
+        function fmtTime(iso) {
+            const d = new Date(iso);
+            return d.toLocaleTimeString("ru-RU", { hour: "2-digit", minute: "2-digit" });
+        }
+
+        function wmoIcon(code) {
+            code = Number(code);
+            if (code === 0) return "☀️";
+            if ([1, 2].includes(code)) return "🌤️";
+            if (code === 3) return "☁️";
+            if ([45, 48].includes(code)) return "🌫️";
+            if ([51, 53, 55, 56, 57].includes(code)) return "🌦️";
+            if ([61, 63, 65, 66, 67, 80, 81, 82].includes(code)) return "🌧️";
+            if ([71, 73, 75, 77, 85, 86].includes(code)) return "🌨️";
+            if ([95, 96, 99].includes(code)) return "⛈️";
+            return "🌥️";
+        }
+
+        function uvLabel(uv) {
+            if (uv < 3) return "Низкий";
+            if (uv < 6) return "Средний";
+            if (uv < 8) return "Высокий";
+            return "Очень высокий";
+        }
+
+        function dayLabel(isoDate) {
+            const d = new Date(isoDate + "T00:00:00");
+            return d.toLocaleDateString("ru-RU", { weekday: "short", day: "2-digit", month: "2-digit" });
+        }
+
+        async function loadRegion(key) {
+            const r = VKO_REGIONS.find(x => x.key === key) || VKO_REGIONS[0];
+            localStorage.setItem("vko_region", r.key);
+
+            $meta.textContent = `Загрузка: ${r.name}…`;
+            $days.innerHTML = "";
+
+            // Open-Meteo (без ключа): current + hourly(uv) + daily(7 дней)
+            const url =
+                `https://api.open-meteo.com/v1/forecast` +
+                `?latitude=${encodeURIComponent(r.lat)}` +
+                `&longitude=${encodeURIComponent(r.lon)}` +
+                `&current=temperature_2m,apparent_temperature,relativehumidity_2m,wind_speed_10m,wind_direction_10m,pressure_msl,weather_code` +
+                `&hourly=uv_index` +
+                `&daily=temperature_2m_max,temperature_2m_min,weather_code,sunrise,sunset,uv_index_max` +
+                `&timezone=auto&forecast_days=7`;
+
+            try {
+                const res = await fetch(url);
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                const data = await res.json();
+
+                const cur = data.current || {};
+                const units = data.current_units || {};
+                const daily = data.daily || {};
+                const hourly = data.hourly || {};
+
+                // ===== UV (текущий час) =====
+                let uv = null;
+                if (hourly.time && hourly.uv_index && cur.time) {
+                    const idx = hourly.time.indexOf(cur.time);
+                    if (idx >= 0) uv = Number(hourly.uv_index[idx]);
+                }
+                if (uv === null && Array.isArray(daily.uv_index_max)) uv = Number(daily.uv_index_max[0]);
+
+                // ===== значения =====
+                const temp = Number(cur.temperature_2m);
+                const feel = Number(cur.apparent_temperature);
+                const hum = Number(cur.relativehumidity_2m);
+                const wind = Number(cur.wind_speed_10m);
+                const wdir = Number(cur.wind_direction_10m);
+                const press = Number(cur.pressure_msl); // hPa ~ mbar
+                const wcode = Number(cur.weather_code);
+
+                // верхняя строка
+                const tText = Number.isFinite(temp) ? `${Math.round(temp)}${units.temperature_2m || "°C"}` : "—";
+                $meta.textContent = `${r.name} • Сейчас ${tText} ${wmoIcon(wcode)}`;
+
+                // 1) UV (шкала 0..11)
+                if (Number.isFinite(uv)) {
+                    $uvText.textContent = uv.toFixed(0);
+                    $uvSub.textContent = uvLabel(uv);
+                    setGauge("uv", uv / 11);
+                } else {
+                    $uvText.textContent = "—";
+                    $uvSub.textContent = "—";
+                    setGauge("uv", 0);
+                }
+
+                // 2) Humidity
+                if (Number.isFinite(hum)) {
+                    $humText.textContent = `${Math.round(hum)}%`;
+                    setGauge("hum", hum / 100);
+                } else {
+                    $humText.textContent = "—";
+                    setGauge("hum", 0);
+                }
+
+                // 3) Feels like (шкала -40..+40)
+                if (Number.isFinite(feel)) {
+                    $feelText.textContent = `${Math.round(feel)}${units.apparent_temperature || "°C"}`;
+                    $feelSub.textContent = "апп. температура";
+                    setGauge("feel", (feel + 40) / 80);
+                } else {
+                    $feelText.textContent = "—";
+                    $feelSub.textContent = "—";
+                    setGauge("feel", 0);
+                }
+
+                // 4) Wind + compass
+                if (Number.isFinite(wind)) {
+                    $windText.textContent = `${Math.round(wind)} ${units.wind_speed_10m || "km/h"}`;
+                    $windSub.textContent = Number.isFinite(wdir) ? `направление: ${Math.round(wdir)}°` : "—";
+                    $windArrow.style.transform = Number.isFinite(wdir) ? `rotate(${Math.round(wdir)}deg)` : "rotate(0deg)";
+                } else {
+                    $windText.textContent = "—";
+                    $windSub.textContent = "—";
+                    $windArrow.style.transform = "rotate(0deg)";
+                }
+
+                // 5) Sunset today
+                if (Array.isArray(daily.sunset) && daily.sunset[0]) {
+                    $sunset.textContent = fmtTime(daily.sunset[0]);
+                    const rise = (daily.sunrise && daily.sunrise[0]) ? fmtTime(daily.sunrise[0]) : "—";
+                    $sunSub.textContent = `восход: ${rise}`;
+                } else {
+                    $sunset.textContent = "—";
+                    $sunSub.textContent = "—";
+                }
+
+                // 6) Pressure (примерный диапазон 980..1050)
+                if (Number.isFinite(press)) {
+                    $press.textContent = `${Math.round(press)}`;
+                    setGauge("press", (press - 980) / (1050 - 980));
+                } else {
+                    $press.textContent = "—";
+                    setGauge("press", 0);
+                }
+
+                // ===== Прогноз 7 дней =====
+                const t = daily.time || [];
+                const tmax = daily.temperature_2m_max || [];
+                const tmin = daily.temperature_2m_min || [];
+                const dc = daily.weather_code || [];
+
+                for (let i = 0; i < Math.min(7, t.length); i++) {
+                    const el = document.createElement("div");
+                    el.className = "wx-day";
+                    const hi = Math.round(Number(tmax[i]));
+                    const lo = Math.round(Number(tmin[i]));
+                    el.innerHTML = `
+                                      <div class="d1">${dayLabel(t[i])}</div>
+                                      <div class="d2">${lo}° / ${hi}°</div>
+                                      <div class="d3">${wmoIcon(dc[i])}</div>
+                                    `;
+                    $days.appendChild(el);
+                }
+
+            } catch (err) {
+                $meta.textContent = `Ошибка загрузки: ${String(err.message || err)}`;
+            }
+        }
+
+        $region.addEventListener("change", () => loadRegion($region.value));
+        $reload.addEventListener("click", () => loadRegion($region.value));
+
+        // старт
+        loadRegion($region.value || VKO_REGIONS[0].key);
+    </script>
+
+
+    <script>
+        const themeBtn = document.getElementById("themeToggle");
+
+        function applyThemeFromStorage() {
+            if (localStorage.getItem("theme") === "green") {
+                document.body.classList.add("green");
+            } else {
+                document.body.classList.remove("green");
+            }
+        }
+
+        themeBtn.addEventListener("click", () => {
+            const isGreen = document.body.classList.toggle("green");
+            localStorage.setItem("theme", isGreen ? "green" : "dark");
+        });
+
+        applyThemeFromStorage();
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const heroMap = document.getElementById("heroMap");
+            if (!heroMap) return;
+
+            // файлы карт
+            const MAP_GREEN = "map.png";        // для зелёной темы (как сейчас)
+            const MAP_DARK = "map-dark.png";   // прикреплённая картинка (для тёмной темы)
+
+            function updateHeroMap() {
+                const isGreen = document.body.classList.contains("green");
+                heroMap.src = isGreen ? MAP_GREEN : MAP_DARK;
+            }
+
+            // 1) сразу при загрузке
+            updateHeroMap();
+
+            // 2) когда меняется тема по кнопке (если есть #themeToggle)
+            const themeBtn = document.getElementById("themeToggle");
+            if (themeBtn) {
+                themeBtn.addEventListener("click", () => {
+                    // твой код уже переключает body.green — мы просто обновляем картинку после
+                    setTimeout(updateHeroMap, 0);
+                });
+            }
+
+            // 3) на случай если тема меняется другим кодом
+            const obs = new MutationObserver(updateHeroMap);
+            obs.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const root = document.getElementById('langSwitch');
+            if (!root) return;
+
+            const btn = root.querySelector('.lang-btn');
+
+            function openMenu() {
+                root.classList.add('is-open');
+                btn.setAttribute('aria-expanded', 'true');
+            }
+
+            function closeMenu() {
+                root.classList.remove('is-open');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const opened = root.classList.contains('is-open');
+                if (opened) closeMenu();
+                else openMenu();
+            });
+
+            // клик вне — закрыть
+            document.addEventListener('click', (e) => {
+                if (!root.contains(e.target)) closeMenu();
+            });
+
+            // ESC — закрыть
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeMenu();
+            });
+        });
+    </script>
+
+</body>
+</html>
