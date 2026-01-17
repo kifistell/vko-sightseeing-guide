@@ -1,0 +1,415 @@
+/* =========================
+   APPLY: красивый фон + фигуры + кнопка
+   (ставь в самый конец quide_1.css)
+========================= */
+
+/* Фон страницы с мягким градиентом и фигурами */
+.apply-page {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    padding: 70px 0;
+    /* базовый градиент — подстраивается под тему через ваши переменные */
+    background: radial-gradient(900px 700px at 15% 20%, rgba(255,255,255,0.16), transparent 55%), radial-gradient(900px 700px at 85% 25%, rgba(255,255,255,0.12), transparent 60%), linear-gradient(135deg, var(--grad-start) 0%, var(--grad-mid) 45%, var(--grad-light) 100%);
+    display: grid;
+    place-items: center;
+}
+
+    /* Геометрические фигуры: круги/квадраты/полосы (очень лёгкие) */
+    .apply-page::before,
+    .apply-page::after {
+        content: "";
+        position: absolute;
+        inset: -160px;
+        pointer-events: none;
+        opacity: .9;
+        filter: blur(0px);
+    }
+
+    .apply-page::before {
+        background: radial-gradient(circle at 20% 25%, rgba(255,255,255,0.16) 0 110px, transparent 115px), radial-gradient(circle at 78% 30%, rgba(255,255,255,0.12) 0 140px, transparent 145px), radial-gradient(circle at 70% 80%, rgba(255,255,255,0.10) 0 170px, transparent 175px), linear-gradient(135deg, rgba(255,255,255,0.08), transparent 40%);
+        transform: rotate(-8deg);
+    }
+
+    .apply-page::after {
+        background:
+        /* “плашки”/квадраты */
+        linear-gradient(rgba(255,255,255,0.10), rgba(255,255,255,0.10)) 18% 35% / 120px 120px no-repeat, linear-gradient(rgba(255,255,255,0.08), rgba(255,255,255,0.08)) 82% 68% / 150px 150px no-repeat,
+        /* диагональные линии */
+        repeating-linear-gradient( 120deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 22px );
+        opacity: .35;
+    }
+
+/* Карточка формы — стекло/blur */
+.apply-wrap {
+    position: relative;
+    width: min(980px, calc(100% - 48px));
+    border-radius: 26px;
+    background: rgba(255,255,255,0.10);
+    color: var(--panel-text);
+    border: 1px solid rgba(255,255,255,0.16);
+    box-shadow: 0 22px 70px rgba(0,0,0,0.22);
+    backdrop-filter: blur(14px);
+    padding: 28px;
+}
+
+    /* Лёгкий “блик” на карточке */
+    .apply-wrap::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: 26px;
+        pointer-events: none;
+        background: radial-gradient(500px 220px at 20% 10%, rgba(255,255,255,0.18), transparent 60%), radial-gradient(420px 220px at 85% 0%, rgba(255,255,255,0.12), transparent 55%);
+        opacity: .9;
+    }
+
+/* Заголовки */
+.apply-title {
+    font-size: 42px;
+    font-weight: 900;
+    margin: 0 0 10px 0;
+    letter-spacing: .2px;
+}
+
+.apply-sub {
+    margin: 0 0 18px 0;
+    opacity: .9;
+    line-height: 1.6;
+}
+
+/* Поля формы — чуть аккуратнее */
+.apply-field input,
+.apply-field select,
+.apply-field textarea {
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.14);
+    background: rgba(255,255,255,0.10);
+    color: var(--panel-text);
+    transition: border-color .15s ease, box-shadow .15s ease, transform .15s ease;
+}
+
+    .apply-field input:focus,
+    .apply-field select:focus,
+    .apply-field textarea:focus {
+        border-color: rgba(255,255,255,0.35);
+        box-shadow: 0 0 0 3px rgba(255,255,255,0.12);
+        transform: translateY(-1px);
+        outline: none;
+    }
+
+/* В зелёной теме поля пусть будут светлее (читабельнее) */
+body.green .apply-wrap {
+    background: rgba(255,255,255,0.78);
+    color: #0c1d26;
+    border: 1px solid rgba(0,0,0,0.08);
+}
+
+body.green .apply-field input,
+body.green .apply-field select,
+body.green .apply-field textarea {
+    background: rgba(255,255,255,0.92);
+    color: #0c1d26;
+    border: 1px solid rgba(0,0,0,0.12);
+}
+
+    body.green .apply-field input:focus,
+    body.green .apply-field select:focus,
+    body.green .apply-field textarea:focus {
+        box-shadow: 0 0 0 3px rgba(47,127,111,0.18);
+        border-color: rgba(47,127,111,0.35);
+    }
+
+/* КНОПКА ОТПРАВКИ — премиальнее */
+.send-btn {
+    position: relative;
+    width: 100%;
+    padding: 15px 18px;
+    border: 0;
+    border-radius: 16px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--main-color) 0%, var(--main-hover) 100%);
+    color: #fff;
+    font-weight: 900;
+    font-size: 16px;
+    letter-spacing: .3px;
+    box-shadow: 0 18px 42px rgba(0,0,0,0.22);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+    /* Блик на кнопке */
+    .send-btn::before {
+        content: "";
+        position: absolute;
+        inset: 2px;
+        border-radius: 14px;
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba(255,255,255,0.28), transparent 55%);
+        opacity: .9;
+    }
+
+    /* Лёгкая “стрела” справа */
+    .send-btn::after {
+        content: "→";
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: .9;
+        font-weight: 900;
+    }
+
+    .send-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 24px 58px rgba(0,0,0,0.26);
+        filter: brightness(1.03);
+    }
+
+    .send-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 14px 34px rgba(0,0,0,0.20);
+    }
+
+    .send-btn:focus {
+        outline: none;
+        box-shadow: 0 0 0 4px rgba(255,255,255,0.16), 0 18px 42px rgba(0,0,0,0.22);
+    }
+
+/* Мобильная адаптация */
+@media (max-width: 820px) {
+    .apply-title {
+        font-size: 32px;
+    }
+
+    .apply-wrap {
+        padding: 22px;
+    }
+}
+
+/* =========================
+   APPLY — фон как раньше + крупные кастомные поля
+   (вставь в самый конец quide_1.css)
+========================= */
+
+/* 1) ФОН как в вашем hero (.second): белый -> мятный -> основной цвет */
+.apply-page {
+    position: relative;
+    min-height: 100vh;
+    padding: 70px 0;
+    overflow: hidden;
+    background: linear-gradient( 180deg, #ffffff 0%, #e9f4f1 40%, var(--main-color) 100% );
+    display: grid;
+    place-items: center;
+}
+
+    /* 2) Лёгкие геометрические фигуры на фоне (очень мягко) */
+    .apply-page::before,
+    .apply-page::after {
+        content: "";
+        position: absolute;
+        inset: -120px;
+        pointer-events: none;
+        opacity: .9;
+    }
+
+body.green .apply-page::before {
+    background: radial-gradient(circle at 18% 22%, rgba(47,127,111,.16) 0 120px, transparent 125px), radial-gradient(circle at 82% 28%, rgba(47,127,111,.12) 0 160px, transparent 165px), radial-gradient(circle at 70% 82%, rgba(47,127,111,.10) 0 210px, transparent 215px);
+}
+
+body:not(.green) .apply-page::before {
+    background: radial-gradient(circle at 18% 22%, rgba(24,58,74,.18) 0 120px, transparent 125px), radial-gradient(circle at 82% 28%, rgba(24,58,74,.14) 0 160px, transparent 165px), radial-gradient(circle at 70% 82%, rgba(24,58,74,.12) 0 210px, transparent 215px);
+}
+
+.apply-page::after {
+    opacity: .25;
+    background: repeating-linear-gradient( 135deg, rgba(255,255,255,.18) 0 2px, transparent 2px 26px );
+}
+
+/* 3) Карточка формы (стекло) */
+.apply-wrap {
+    width: min(980px, calc(100% - 48px));
+    border-radius: 26px;
+    padding: 28px;
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(0,0,0,0.08);
+    box-shadow: 0 22px 60px rgba(0,0,0,0.18);
+    backdrop-filter: blur(10px);
+}
+
+/* Если хочешь, чтобы в тёмной теме карточка была темнее — включи это:
+body:not(.green) .apply-wrap{
+  background: rgba(24,58,74,.72);
+  border: 1px solid rgba(255,255,255,.14);
+  color: #e6f0f2;
+}
+*/
+
+/* 4) Заголовки */
+.apply-title {
+    font-size: 44px;
+    font-weight: 900;
+    margin: 0 0 8px 0;
+    color: #0c1d26;
+}
+
+.apply-sub {
+    margin: 0 0 20px 0;
+    line-height: 1.6;
+    opacity: .9;
+    color: #0c1d26;
+}
+
+/* 5) Сетка: больше места каждому полю */
+.apply-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 колонка = больше воздуха */
+    gap: 16px;
+}
+
+/* Каждое поле как отдельная “карточка” */
+.apply-field {
+    background: rgba(255,255,255,0.72);
+    border: 1px solid rgba(0,0,0,0.08);
+    border-radius: 18px;
+    padding: 14px 14px 12px;
+}
+
+    /* Лейбл всегда сверху */
+    .apply-field label {
+        display: block;
+        font-weight: 900;
+        margin-bottom: 10px;
+        color: #0c1d26;
+    }
+
+    /* 6) Кастомные инпуты */
+    .apply-field input,
+    .apply-field select,
+    .apply-field textarea {
+        width: 100%;
+        height: 54px;
+        padding: 0 14px;
+        border-radius: 14px;
+        border: 1px solid rgba(0,0,0,0.10);
+        background: rgba(255,255,255,0.95);
+        color: #0c1d26;
+        font-size: 16px;
+        font-weight: 600;
+        outline: none;
+        transition: box-shadow .15s ease, border-color .15s ease, transform .12s ease;
+    }
+
+    .apply-field textarea {
+        height: auto;
+        min-height: 140px;
+        padding: 12px 14px;
+        resize: vertical;
+    }
+
+        /* Placeholder аккуратнее */
+        .apply-field input::placeholder,
+        .apply-field textarea::placeholder {
+            color: rgba(12,29,38,.55);
+            font-weight: 600;
+        }
+
+        /* Фокус — “дорогой” */
+        .apply-field input:focus,
+        .apply-field select:focus,
+        .apply-field textarea:focus {
+            border-color: rgba(47,127,111,0.45);
+            box-shadow: 0 0 0 4px rgba(47,127,111,0.18);
+            transform: translateY(-1px);
+        }
+
+    /* 7) Кастом стрелка у select */
+    .apply-field select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        padding-right: 44px;
+        background-image: linear-gradient(45deg, transparent 50%, rgba(12,29,38,.75) 50%), linear-gradient(135deg, rgba(12,29,38,.75) 50%, transparent 50%);
+        background-position: calc(100% - 22px) 50%, calc(100% - 16px) 50%;
+        background-size: 6px 6px, 6px 6px;
+        background-repeat: no-repeat;
+    }
+
+/* 8) Подсказки/ошибки */
+.apply-hint {
+    margin-top: 8px;
+    font-size: 13px;
+    opacity: .75;
+    color: #0c1d26;
+}
+
+.apply-error {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 900;
+    color: #b00020;
+}
+
+/* 9) Кнопки */
+.apply-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 18px;
+    flex-wrap: wrap;
+}
+
+.send-btn {
+    flex: 1;
+    min-width: 240px;
+    height: 54px;
+    border: 0;
+    border-radius: 16px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--main-color) 0%, var(--main-hover) 100%);
+    color: #000000;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: .3px;
+    box-shadow: 0 16px 38px rgba(0,0,0,.18);
+    transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+
+    .send-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 22px 52px rgba(0,0,0,.22);
+        filter: brightness(1.03);
+    }
+
+    .send-btn:active {
+        transform: translateY(0);
+        box-shadow: 0 12px 28px rgba(0,0,0,.18);
+    }
+
+.apply-reset {
+    height: 54px;
+    padding: 0 18px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: rgba(255,255,255,0.85);
+    cursor: pointer;
+    font-weight: 900;
+    color: #0c1d26;
+}
+
+    .apply-reset:hover {
+        background: rgba(255,255,255,0.95);
+    }
+
+/* Мобилка */
+@media (max-width: 720px) {
+    .apply-title {
+        font-size: 32px;
+    }
+
+    .apply-wrap {
+        padding: 20px;
+    }
+
+    .send-btn {
+        min-width: 100%;
+    }
+}
